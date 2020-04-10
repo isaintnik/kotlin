@@ -21,6 +21,7 @@ import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 import org.jetbrains.kotlin.gradle.util.*
 import org.jetbrains.kotlin.konan.target.CompilerOutputKind
 import org.jetbrains.kotlin.konan.target.HostManager
+import org.jetbrains.kotlin.library.KLIB_PROPERTY_SHORT_NAME
 import org.jetbrains.kotlin.library.KLIB_PROPERTY_UNIQUE_NAME
 import org.junit.Assert
 import org.junit.Ignore
@@ -2559,6 +2560,8 @@ class NewMultiplatformIT : BaseGradleIT() {
 
             val nativeManifest = getManifest("foo/build/classes/kotlin/linux/main/foo.klib")
             assertEquals("org.sample.one.foo", nativeManifest[KLIB_PROPERTY_UNIQUE_NAME])
+            // Check the short name that is used as a prefix in generated ObjC headers.
+            assertEquals("foo", nativeManifest[KLIB_PROPERTY_SHORT_NAME])
 
             val jsManifest = projectDir.resolve("foo/build/classes/kotlin/js/main/default/manifest")
                 .inputStream().use { stream ->

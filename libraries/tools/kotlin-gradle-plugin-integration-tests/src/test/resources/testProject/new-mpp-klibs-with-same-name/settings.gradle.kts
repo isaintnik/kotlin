@@ -24,6 +24,5 @@ pluginManagement {
     }
 }
 
-//rootProject.name = "foo"
 include("foo")
 include("foo:foo")

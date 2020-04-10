@@ -308,6 +308,15 @@ open class KotlinNativeCompile : AbstractKotlinNativeCompile<KotlinCommonOptions
         }
     }
 
+    @get:Input
+    val shortModuleName: String by project.provider {
+        if (compilation.isMainCompilation) {
+            project.name
+        } else {
+            compilation.name
+        }
+    }
+
     // Inputs and outputs.
     // region Sources.
     @InputFiles
@@ -391,6 +400,7 @@ open class KotlinNativeCompile : AbstractKotlinNativeCompile<KotlinCommonOptions
 
         // Configure FQ module name to avoid cyclic dependencies in klib manifests (see KT-36721).
         addArg("-module-name", moduleName)
+        addArg("-Xshort-module-name", shortModuleName)
         val friends = friendModule?.files
         if (friends != null && friends.isNotEmpty()) {
             addArg("-friend-modules", friends.map { it.absolutePath }.joinToString(File.pathSeparator))
