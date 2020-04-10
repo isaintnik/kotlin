@@ -143,6 +143,7 @@ internal fun runToolInSeparateProcess(
 
 private fun writeArgumentsToFile(directory: File, argsArray: Array<String>): File {
     val compilerOptions = File.createTempFile(LocalDateTime.now().format(DateTimeFormatter.BASIC_ISO_DATE) + "_", ".compiler.options", directory)
+    compilerOptions.deleteOnExit()
     compilerOptions.writeText(argsArray.joinToString(" "))
     return compilerOptions
 }
