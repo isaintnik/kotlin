@@ -17,7 +17,7 @@ public expect annotation class JsName(val name: String)
 /**
  * Marks experimental JS export annotations.
  *
- * Note that behaviour of these annotations will likely be changed in the future.
+ * Note that behavior of these annotations will likely be changed in the future.
  *
  * Usages of such annotations will be reported as warnings unless an explicit opt-in with
  * the [OptIn] annotation, e.g. `@OptIn(ExperimentalJsExport::class)`,
@@ -26,10 +26,10 @@ public expect annotation class JsName(val name: String)
 @Suppress("DEPRECATION")
 @Experimental(level = Experimental.Level.WARNING)
 @RequiresOptIn(level = RequiresOptIn.Level.WARNING)
-@SinceKotlin("1.4")
 @MustBeDocumented
-@OptionalExpectation
-public expect annotation class ExperimentalJsExport()
+@Retention(AnnotationRetention.SOURCE)
+@SinceKotlin("1.4")
+public annotation class ExperimentalJsExport
 
 /**
  * Exports top-level declaration.
