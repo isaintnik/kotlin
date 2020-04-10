@@ -34,11 +34,14 @@ public annotation class ExperimentalJsExport
 /**
  * Exports top-level declaration.
  *
- * This annotation has effect only in IR-based JS backend.
+ * Compiler exports from the module those top-level declarations that are marked with this annotation.
+ * There is no effect if this annotation is applied to a non-top-level declaration.
+ *
+ * This annotation has effect only on top-level declarations and only in IR-based JS backend.
  */
 @ExperimentalJsExport
-@SinceKotlin("1.4")
 @Retention(AnnotationRetention.BINARY)
 @Target(CLASS, PROPERTY, FUNCTION, FILE)
+@SinceKotlin("1.4")
 @OptionalExpectation
 public expect annotation class JsExport()
