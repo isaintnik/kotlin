@@ -27,7 +27,7 @@ public expect annotation class JsName(val name: String)
 @Experimental(level = Experimental.Level.WARNING)
 @RequiresOptIn(level = RequiresOptIn.Level.WARNING)
 @MustBeDocumented
-@Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.BINARY)
 @SinceKotlin("1.4")
 public annotation class ExperimentalJsExport
 
