@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 JetBrains s.r.o. and Kotlin Programming Language contributors.
+ * Copyright 2010-2020 JetBrains s.r.o. and Kotlin Programming Language contributors.
  * Use of this source code is governed by the Apache 2.0 license that can be found in the license/LICENSE.txt file.
  */
 
@@ -128,8 +128,8 @@ class GradleScriptDefinitionsContributor(private val project: Project) : ScriptD
     private fun kotlinStdlibAndCompiler(gradleLibDir: File): List<File> {
         // additionally need compiler jar to load gradle resolver
         return gradleLibDir.listFiles { file ->
-                file.name.startsWith("kotlin-compiler-embeddable") || file.name.startsWith("kotlin-stdlib")
-            }
+            file.name.startsWith("kotlin-compiler-embeddable") || file.name.startsWith("kotlin-stdlib")
+        }
             .firstOrNull()?.let(::listOf).orEmpty()
     }
 
@@ -215,7 +215,7 @@ class GradleScriptDefinitionsContributor(private val project: Project) : ScriptD
             createHostConfiguration(gradleExeSettings, projectSettings),
             additionalResolverClasspath(gradleLibDir)
         ).map {
-            it.asLegacyOrNull<KotlinScriptDefinitionFromAnnotatedTemplate>()?.let { legacyDef ->
+            (if (it is ScriptDefinition.FromLegacy) it.legacyDefinition as? KotlinScriptDefinitionFromAnnotatedTemplate else null)?.let { legacyDef ->
                 @Suppress("DEPRECATION")
                 if (legacyDef.scriptExpectedLocations.contains(ScriptExpectedLocation.Project)) null
                 else {

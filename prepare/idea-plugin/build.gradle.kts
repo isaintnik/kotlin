@@ -10,6 +10,8 @@ repositories {
     maven("https://jetbrains.bintray.com/markdown")
 }
 
+jvmTarget = "1.6"
+
 // PILL: used in pill importer
 val projectsToShadow by extra(listOf(
         ":plugins:annotation-based-compiler-plugins-ide-support",
@@ -56,6 +58,7 @@ val projectsToShadow by extra(listOf(
         ":idea:idea-native",
         ":idea:idea-core",
         ":idea:idea-gradle",
+        ":idea:idea-gradle-importing",
         ":idea:idea-gradle-native",
         ":compiler:ir.psi2ir",
         ":compiler:ir.tree",

@@ -7,6 +7,7 @@ dependencies {
     testRuntime(intellijDep())
 
     compileOnly(project(":idea:idea-gradle"))
+    compileOnly(project(":idea:idea-gradle-importing"))
     compileOnly(project(":idea:idea-native"))
 
     compileOnly(project(":idea")) { isTransitive = false }

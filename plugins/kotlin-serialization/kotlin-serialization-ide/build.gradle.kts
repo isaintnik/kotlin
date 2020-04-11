@@ -12,6 +12,7 @@ dependencies {
     compile(project(":kotlinx-serialization-compiler-plugin"))
     compile(project(":idea"))
     compile(project(":idea:idea-gradle"))
+    compile(project(":idea:idea-gradle-importing"))
     compile(project(":idea:idea-maven"))
     compile(project(":plugins:annotation-based-compiler-plugins-ide-support"))
     compileOnly(intellijDep())

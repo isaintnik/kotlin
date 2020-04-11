@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 JetBrains s.r.o. and Kotlin Programming Language contributors.
+ * Copyright 2010-2020 JetBrains s.r.o. and Kotlin Programming Language contributors.
  * Use of this source code is governed by the Apache 2.0 license that can be found in the license/LICENSE.txt file.
  */
 
@@ -13,6 +13,7 @@ import com.intellij.openapi.util.registry.Registry
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import com.intellij.psi.util.PsiTreeUtil
 import org.gradle.util.GradleVersion
 import org.jetbrains.kotlin.idea.util.application.runReadAction
 import org.jetbrains.kotlin.psi.KtCallExpression
@@ -35,7 +36,7 @@ fun isInAffectedGradleProjectFiles(project: Project, filePath: String): Boolean 
             return true
         }
 
-        return filePath.substringBeforeLast("/") in project.service<GradleScriptInputsWatcher>().getGradleProjectsRoots()
+        return filePath.substringBeforeLast("/") in project.getService(GradleScriptInputsWatcher::class.java).getGradleProjectsRoots()
     }
 
     return false
@@ -55,7 +56,7 @@ fun getGradleScriptInputsStamp(
         if (ktFile != null) {
             val result = StringBuilder()
             ktFile.script?.blockExpression
-                ?.getChildrenOfType<KtScriptInitializer>()
+                ?.let { PsiTreeUtil.getChildrenOfType(it, KtScriptInitializer::class.java) }
                 ?.forEach {
                     val call = it.children.singleOrNull() as? KtCallExpression
                     val callRef = call?.firstChild?.text ?: return@forEach
@@ -67,7 +68,8 @@ fun getGradleScriptInputsStamp(
                                 super.visitElement(element)
                                 when (element) {
                                     is PsiWhiteSpace -> if (element.text.contains("\n")) result.append("\n")
-                                    is PsiComment -> { }
+                                    is PsiComment -> {
+                                    }
                                     is LeafPsiElement -> result.append(element.text)
                                 }
                             }

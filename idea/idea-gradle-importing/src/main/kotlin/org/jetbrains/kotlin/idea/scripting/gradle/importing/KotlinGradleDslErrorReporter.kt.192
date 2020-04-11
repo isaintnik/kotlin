@@ -10,7 +10,7 @@ import com.intellij.build.SyncViewManager
 import com.intellij.build.events.MessageEvent
 import com.intellij.build.events.impl.FileMessageEventImpl
 import com.intellij.build.events.impl.MessageEventImpl
-import com.intellij.openapi.components.service
+import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.externalSystem.model.task.ExternalSystemTaskId
 import com.intellij.openapi.externalSystem.service.execution.ExternalSystemEventDispatcher
 import com.intellij.openapi.project.Project
@@ -24,7 +24,7 @@ class KotlinGradleDslErrorReporter(
     private val task: ExternalSystemTaskId
 ) {
 
-    private val syncViewManager = project.service<SyncViewManager>()
+    private val syncViewManager = ServiceManager.getService(project, SyncViewManager::class.java)
     private val buildEventDispatcher = ExternalSystemEventDispatcher(task, syncViewManager)
 
     fun reportError(

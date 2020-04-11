@@ -17,6 +17,7 @@ dependencies {
     compileOnly(project(":idea"))
     compileOnly(project(":idea:idea-jvm"))
     compileOnly(project(":idea:idea-gradle"))
+    compileOnly(project(":idea:idea-gradle-importing"))
     compileOnly(project(":kotlin-android-extensions-runtime"))
     compileOnly(intellijPluginDep("android"))
     compileOnly(intellijPluginDep("gradle"))

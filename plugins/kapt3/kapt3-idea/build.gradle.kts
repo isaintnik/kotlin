@@ -4,6 +4,8 @@ plugins {
     id("jps-compatible")
 }
 
+jvmTarget = "1.6"
+
 dependencies {
     compile(kotlinStdlib())
 
@@ -12,6 +14,7 @@ dependencies {
     compileOnly(project(":idea:kotlin-gradle-tooling"))
     compileOnly(project(":idea:idea-core"))
     compileOnly(project(":idea:idea-gradle"))
+    compileOnly(project(":idea:idea-gradle-importing"))
     compileOnly(intellijDep())
     Platform[192].orHigher {
         compileOnly(intellijPluginDep("java"))

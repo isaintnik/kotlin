@@ -6,6 +6,8 @@ plugins {
     id("jps-compatible")
 }
 
+jvmTarget = "1.6"
+
 dependencies {
     compile(project(":kotlin-noarg-compiler-plugin"))
 

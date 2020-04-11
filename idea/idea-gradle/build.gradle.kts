@@ -32,6 +32,7 @@ dependencies {
     runtimeOnly(project(":kotlin-coroutines-experimental-compat"))
 
     compileOnly(project(":kotlin-gradle-statistics"))
+    compileOnly(project(":idea:idea-gradle-importing"))
 
     Platform[192].orHigher {
         compileOnly(intellijPluginDep("java"))
@@ -50,6 +51,7 @@ dependencies {
     testCompileOnly(intellijDep())
 
     testCompile(project(":idea:idea-native")) { isTransitive = false }
+    testImplementation(project(":idea:idea-gradle-importing")) { isTransitive = false }
     testCompile(project(":idea:idea-gradle-native")) { isTransitive = false }
     if (Ide.IJ()) {
         testRuntime(project(":idea:idea-new-project-wizard"))

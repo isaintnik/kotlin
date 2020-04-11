@@ -112,6 +112,7 @@ dependencies {
     testCompile(projectTests(":idea:idea-test-framework")) { isTransitive = false }
     testCompile(project(":idea:idea-jvm")) { isTransitive = false }
     testCompile(project(":idea:idea-gradle")) { isTransitive = false }
+    testCompile(project(":idea:idea-gradle-importing")) { isTransitive = false }
     testCompile(project(":idea:idea-maven")) { isTransitive = false }
     testCompile(project(":idea:idea-native")) { isTransitive = false }
     testCompile(project(":idea:idea-gradle-native")) { isTransitive = false }

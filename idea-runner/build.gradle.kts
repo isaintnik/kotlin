@@ -8,6 +8,7 @@ dependencies {
     compileOnly(project(":idea"))
     compileOnly(project(":idea:idea-maven"))
     compileOnly(project(":idea:idea-gradle"))
+    compileOnly(project(":idea:idea-gradle-importing"))
     compileOnly(project(":idea:idea-jvm"))
 
     runtimeOnly(intellijDep())
